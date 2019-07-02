@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <title>School Table</title>
+</head>
+<body>
+
+<div>
+    <table id="School112" border="1">
+        <tr>
+            <th>name</th>
+            <th>createdyear</th>
+
+        </tr>
+        <tr th:each="school : ${school112List}">
+            <td th:text="${school.name}"></td>
+            <td th:text="${school.createdyear}"></td>
+            <td>
+                <form method="get" action="/school-delete">
+                    <input th:type="hidden" th:name="id" th:value="${school.id}">
+                    <input type="submit" value="Delete School">
+                </form>
+            </td>
+            <td>
+                <a th:href="@{/edit-school(id=${school.id})}" th:text="'Edit'"></a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<br><br/>
+<form method="get" action="/add-school">
+    <input type="submit" value="Add School">
+</form>
+
+
+</body>
+</html>

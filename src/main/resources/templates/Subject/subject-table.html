@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Subject Table</title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>name</th>
+        </tr>
+        <tr th:each="subject : ${subject123List}">
+            <td th:text="${subject.name}"></td>
+            <td>
+                <form method="get" action="/subject-delete">
+                    <input th:type="hidden" th:name="id" th:value="${subject.id}">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+<br><br/>
+<form method="get" action="/add-subject">
+    <input type="submit" value="Add Subject">
+</form>
+
+</body>
+</html>

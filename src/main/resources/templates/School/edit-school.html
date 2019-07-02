@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" th:action="@{/school-edit(id=${id})}">
+      Name:
+     <input th:name="name" th:text="school.name">
+     Created Year:
+    <input type="date"  th:name="createdYear" >
+    <input type="submit">
+</form>
+</body>
+</html>

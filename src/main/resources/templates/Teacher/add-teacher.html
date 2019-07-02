@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Add Teacher</h2>
+<form method="post" action="/add-teacher">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input th:name="name" /></td>
+        </tr>
+        <tr>
+            <td>School Name:</td>
+            <td><input th:name = "name"></td>
+        </tr>
+        <tr>
+            <td>Subject Name:</td>
+            <td><input th:name="subject" /></td>
+        </tr>
+        <br><br/>
+
+    </table>
+    <br><br/>
+    <tr>
+        <td><input type="submit" value="Add" /></td>
+    </tr>
+</form>
+
+</body>
+</html>

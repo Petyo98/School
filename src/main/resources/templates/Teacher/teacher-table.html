@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Table</title>
+
+
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+
+            <th>name</th>
+            <th>school name</th>
+            <th>subject name</th>
+
+        </tr>
+        <tr th:each="teacher : ${teachers123List}">
+
+            <td th:text="${teacher.name}"></td>
+            <td th:text="${teacher.school112.name}"></td>
+            <td th:text="${teacher.subject123.name}"></td>
+            <td>
+                <form method="get" action="/teacher-delete">
+                    <input th:type="hidden" th:name="id" th:value="${teacher.id}">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+<br><br/>
+<form method="get" action="/add-teacher">
+    <input type="submit" value="Add Teacher">
+</form>
+
+
+
+</body>
+</html>

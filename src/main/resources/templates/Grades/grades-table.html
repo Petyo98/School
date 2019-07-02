@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades Table</title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>value</th>
+
+        </tr>
+        <tr th:each="grades : ${grades123List}">
+            <td th:text="${grades.id}"></td>
+            <td th:text="${grades.value}"></td>
+            <td>
+                <form method="get" action="/delete-grades">
+                    <input th:type="hidden" th:name="id" th:value="${grades.id}">
+                    <input type="submit" value="Delete Grades">
+            </form>
+            </td>
+        </tr>
+    </table>
+</div>
+<br><br/>
+<form method="get" action="/add-grades">
+    <input type="submit" value="Add Grades">
+</form>
+
+<br><br/>
+<form method="get" action="/edit">
+    <input type="submit" value="Edit Grades">
+</form>
+</body>
+</html>

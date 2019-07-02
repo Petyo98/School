@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Table</title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>name</th>
+        </tr>
+        <tr th:each="class : ${class123List}">
+
+            <td th:text="${class.name}"></td>
+            <td>
+
+                <form method="get" action="/class-delete" >
+                    <input th:type="hidden" th:name="id" th:value="${class.id}">
+                    <input type="submit" value="Delete">
+                </form>
+
+            </td>
+        </tr>
+    </table>
+</div>
+<br><br/>
+<form method="get" action="/add-class" >
+    <input type="submit" value="Add Class">
+</form><br><br/>
+
+
+</body>
+</html>

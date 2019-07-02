@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Table</title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>name</th>
+            <th>grades</th>
+        </tr>
+        <tr th:each="students : ${students123List}">
+            <td th:text="${students.name}"></td>
+            <td th:text="${students.grades.value}"></td>
+            <td>
+                <form method="get" action="/student-delete">
+                    <input th:type="hidden" th:name="id" th:value="${students.id}">
+                    <input type="submit" value="Delete Student">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+<br><br/>
+<form method="get" action="/add-student">
+    <input type="submit" value="Add Student">
+</form>
+
+</body>
+</html>
