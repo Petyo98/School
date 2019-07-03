@@ -9,4 +9,7 @@ create  table  Person(
 select from Person;
 
 drop table person;
-//dobavqne na metodite pre kato koloni
+
+
+alter table Person
+add column uppdate_date DATE;

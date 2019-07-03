@@ -1,14 +1,15 @@
 package com.example.test123.jpa;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-public class Person {
+public class Person extends BaseEntity {
     @Id
+    @GeneratedValue(generator = "person_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "person_id_sq",name = "person_id_seq",
+            schema = "public",allocationSize = 1,initialValue = 1)
     private Long id;
     private String fisrtName;
     private String secondName;
@@ -25,7 +26,7 @@ public class Person {
     }
 
     @Basic
-    @Column(name = "fisrt_name")
+    @Column(name = "fisrt_name", length = 10)
     public String getFisrtName() {
         return fisrtName;
     }

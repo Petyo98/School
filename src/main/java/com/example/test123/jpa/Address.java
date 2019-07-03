@@ -1,16 +1,20 @@
 package com.example.test123.jpa;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
 public class Address extends BaseEntity{
+    @Size(max = 255)
+    @NotNull
     private String address;
     private Boolean mainaddress;
     @Id
+    @GeneratedValue(generator = "person_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "person_id_sq",name = "person_id_seq",
+            schema = "public",allocationSize = 1,initialValue = 1)
     private Long id;
 
     @Basic
