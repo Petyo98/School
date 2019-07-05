@@ -28,9 +28,9 @@ public class SchoolController {
     @RequestMapping(value = "/schools", method = RequestMethod.GET)
     public @ResponseBody
     ModelAndView goToSecondPage(Model modelMap) {
-        List<School> school112List = schoolService.findAll();
+        List<School> schoolList = schoolService.findAll();
         ModelAndView modelAndView = new ModelAndView("School/school-table");
-        modelMap.addAttribute(school112List);
+        modelMap.addAttribute(schoolList);
         return modelAndView;
     }
 
@@ -47,8 +47,8 @@ public class SchoolController {
             @RequestParam(value = "createdyear", required = false) Date createdyear,Model model) {
         School school = new School(name, createdyear);
         schoolService.save(school);
-        List<School> school112List = schoolService.findAll();
-        model.addAttribute(school112List);
+        List<School> schoolList = schoolService.findAll();
+        model.addAttribute(schoolList);
         return "School/school-table";
     }
 
@@ -63,14 +63,14 @@ public class SchoolController {
     public String deleteSchool(@RequestParam Long id, Model model) {
 
         schoolService.delete(id);
-        List<School> school112List = schoolService.findAll();
-        model.addAttribute(school112List);
+        List<School> schoolList = schoolService.findAll();
+        model.addAttribute(schoolList);
         return "School/school-table";
     }
 
     @RequestMapping(value = "/edit-school", method = RequestMethod.GET)
     public ModelAndView goEditSchool(@RequestParam Long id ,Model model) {
-        School school112 = schoolService.getSchoolById(id);
+        School school = schoolService.getSchoolById(id);
         model.addAttribute("id",id);
         ModelAndView modelAndView = new ModelAndView("edit-school");
 

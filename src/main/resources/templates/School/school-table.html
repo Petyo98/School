@@ -8,13 +8,13 @@
 <body>
 
 <div>
-    <table id="School112" border="1">
+    <table id="School" border="1">
         <tr>
             <th>name</th>
             <th>createdyear</th>
 
         </tr>
-        <tr th:each="school : ${school112List}">
+        <tr th:each="school : ${schoolList}">
             <td th:text="${school.name}"></td>
             <td th:text="${school.createdyear}"></td>
             <td>

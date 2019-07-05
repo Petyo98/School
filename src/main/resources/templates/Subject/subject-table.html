@@ -10,7 +10,7 @@
         <tr>
             <th>name</th>
         </tr>
-        <tr th:each="subject : ${subject123List}">
+        <tr th:each="subject : ${subjectList}">
             <td th:text="${subject.name}"></td>
             <td>
                 <form method="get" action="/subject-delete">

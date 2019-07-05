@@ -9,9 +9,9 @@ public class Grade {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "grades123_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequenceName = "grades123_id_seq",
-            name = "grades123_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(generator = "grades_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "grades_id_seq",
+            name = "grades_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
     private Long id;
 
     @Column(name = "value")

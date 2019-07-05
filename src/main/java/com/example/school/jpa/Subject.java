@@ -42,11 +42,11 @@ public class Subject {
         this.name = name;
     }
 
-    public List<Teacher> getTeachers1s() {
+    public List<Teacher> getTeachers() {
         return teachers;
     }
 
-    public void setTeachers(List<Teacher> teachers1s) {
+    public void setTeachers(List<Teacher> teachers) {
         this.teachers = teachers;
     }
 
