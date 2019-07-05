@@ -1,6 +1,8 @@
 package com.example.school.jpa;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,14 +15,20 @@ public class Person extends BaseEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "fisrt_name", length = 10)
+    @Size(max = 55)
+    @Column(name = "fisrt_name", length = 55)
     private String fisrtName;
 
-    @Column(name = "second_name")
+    @Size(max = 55)
+    @Column(name = "second_name", length = 55)
     private String secondName;
-    
-    @Column(name = "last_name")
+
+    @Size(max = 55)
+    @Column(name = "last_name", length = 55)
     private String lastName;
+
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresses;
 
     public Long getId() {
         return id;
@@ -52,6 +60,14 @@ public class Person extends BaseEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 
     @Override

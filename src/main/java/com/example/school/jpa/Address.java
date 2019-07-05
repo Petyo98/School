@@ -17,12 +17,23 @@ public class Address extends BaseEntity{
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "address")
+    @Column(name = "address", length = 255)
     private String address;
 
-    @Basic
     @Column(name = "mainaddress")
     private Boolean mainaddress;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getAddress() {
         return address;
@@ -40,12 +51,12 @@ public class Address extends BaseEntity{
         this.mainaddress = mainaddress;
     }
 
-    public Long getId() {
-        return id;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override
