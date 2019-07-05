@@ -1,13 +1,11 @@
 package com.example.test123.repository;
 
 
-import com.example.test123.jpa.School112;
+import com.example.test123.jpa.School;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface SchoolRepository extends CrudRepository<School112, Long> {
-    School112 getSchoolById(long id);
+public interface SchoolRepository extends CrudRepository<School, Long> {
+    School getSchoolById(Long id);
 }

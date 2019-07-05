@@ -1,15 +1,13 @@
 package com.example.test123.repository;
 
 import com.example.test123.jpa.Person;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
-import java.sql.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -17,81 +15,77 @@ import static org.junit.Assert.*;
 @DataJpaTest
 public class PersonSpec {
 
+    private final static String FIRST_NAME = "first name";
+
+    private final static String SECOND_NAME = "second name";
+
+    private final static String LAST_NAME = "last name";
+
+    private final static String TEST_NAME = "test";
+
     @Autowired
     private PersonRepository repository;
-
 
     @Test
     public void testAddPerson() {
         Person person = new Person();
-        person.setFisrtName("test");
-        person.setSecondName("second name");
-        person.setLastName("last name");
-        person.setCreateDate(new Date(1998,2,13));
-        person.setUpdateDate(null);
+        person.setFisrtName(FIRST_NAME);
+        person.setSecondName(SECOND_NAME);
+        person.setLastName(LAST_NAME);
 
         Person savedPerson = repository.save(person);
 
         assertEquals(1, repository.count());
-//        assertNotNull(savedPerson.getCreateDate());
-//        System.out.println(savedPerson.getCreateDate());
-
     }
 
 
     @Test
-    public void testEditPerson(){
+    public void testEditPerson() {
         Person person = new Person();
-        person.setFisrtName("test");
-        person.setSecondName("second name");
-        person.setLastName("last name");
-        person.setCreateDate(new Date(1998,2,13));
-        person.setUpdateDate(null);
+        person.setFisrtName(FIRST_NAME);
+        person.setSecondName(SECOND_NAME);
+        person.setLastName(LAST_NAME);
 
-        Person newPerson = new Person();
-        newPerson.setId(person.getId());
-        newPerson.setFisrtName("new test");
-        newPerson.setSecondName("new second name");
-        newPerson.setLastName("new last name");
-        newPerson.setCreateDate(person.getCreateDate());
-        newPerson.setUpdateDate(new Date(2019,7,3));
+        person = repository.save(person);
+
+        assertNotNull(person);
+        String oldFirstName = person.getFisrtName();
+
+        Person newPerson = repository.findById(person.getId()).get();
+        newPerson.setFisrtName(TEST_NAME);
+
+        newPerson = repository.save(newPerson);
+
         assertEquals(person.getId(), newPerson.getId());
-
+        assertNotEquals(oldFirstName, newPerson.getFisrtName());
     }
-  //za relaciq i varchar testove
 
     @Test
-    public void testSearchPerson(){
+    public void testSearchPerson() {
         Person person = new Person();
-        person.setFisrtName("dasdasd");
-        assertEquals(person.getFisrtName(), "dasdasd");
+        person.setFisrtName(FIRST_NAME);
+        person.setSecondName(SECOND_NAME);
+        person.setLastName(LAST_NAME);
+
+        person = repository.save(person);
+
+        List<Person> foundPersons = repository.findByFisrtName(FIRST_NAME);
+        assertEquals(1, foundPersons.size());
     }
-//delete methoda ne e gotov
+
     @Test
-    public void testDeletePerson(){
+    public void testDeletePerson() {
 
         Person person = new Person();
-        person.setFisrtName("sdfsdfsdf");
-        Person savedPerson = repository.save(person);
-        savedPerson.setSecondName("dsfdsf");
-        Person updatedPerson = repository.save(savedPerson);
+        person.setFisrtName(FIRST_NAME);
+        person.setSecondName(SECOND_NAME);
+        person.setLastName(LAST_NAME);
 
-        assertEquals(1,repository.count());
-        repository.delete(savedPerson);
+        person = repository.save(person);
+        assertEquals(1, repository.count());
 
-        assertEquals(0,repository.count());
+        repository.delete(person);
 
-
-    }
-
-
-    @Test//(expected = NullPointerException.class)
-    @Ignore
-    public void testLengthFirstName(){
-        Person person = new Person();
-        person.setFisrtName("rewrsadasdasdrewrsadasdasdrewrsadasdasdrewrsadasdasdffffrewrsadasdasdrewrsadasdasdrewrsadasdasdrewrsadasdasdffffrewrsadasdasdrewrsadasdasdrewrsadasdasdrewrsadasdasdffffrewrsadasdasdrewrsadasdasdrewrsadasdasdrewrsadasdasdffffrewrsadasdasdrewrsadasdasdrewrsadasdasdrewrsadasdasdffffrewrsadasdasdrewrsadasdasdrewrsadasdasdrewrsadasdasdffffrewrsadasdasdrewrsadasdasdrewrsadasdasdrewrsadasdasdffffrewrsadasdasdrewrsadasdasdrewrsadasdasdrewrsadasdasdffffrewrsadasdasdrewrsadasdasdrewrsadasdasdrewrsadasdasdffff");
-
-        repository.save(person);
-
+        assertEquals(0, repository.count());
     }
 }

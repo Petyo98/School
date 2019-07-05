@@ -1,7 +1,7 @@
 package com.example.test123.controller;
 
-import com.example.test123.jpa.Grades123;
-import com.example.test123.service.ServiseInterfaces.GradesService;
+import com.example.test123.jpa.Grade;
+import com.example.test123.service.GradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,59 +16,64 @@ import java.util.List;
 
 
 @Controller
-public class GradesController {
+public class GradeController {
 
     @Autowired
-    GradesService gradesService;
+    GradeService gradesService;
 
-    @RequestMapping(value = "/grades",method = RequestMethod.GET)
+    @RequestMapping(value = "/grades", method = RequestMethod.GET)
     public @ResponseBody
-    ModelAndView showGrades(ModelMap modelMap){
-        List<Grades123> grades123List=gradesService.findAll();
+    ModelAndView showGrades(ModelMap modelMap) {
+        List<Grade> gradeList = gradesService.findAll();
+
         ModelAndView modelAndView = new ModelAndView("Grades/grades-table");
-        modelMap.addAttribute(grades123List);
+        modelMap.addAttribute(gradeList);
+
         return modelAndView;
     }
 
     @RequestMapping(value = "/add-grades", method = RequestMethod.GET)
     public @ResponseBody
-    ModelAndView addGrades() {
+    ModelAndView addGrade() {
         ModelAndView modelAndView = new ModelAndView("Grades/add-grades");
         return modelAndView;
     }
 
     @RequestMapping(value = "/add-grades", method = RequestMethod.POST)
-    public String doAction (@RequestParam(value = "value", required=false) Integer value, Model model) {
-        Grades123 grades123= new Grades123(value);
-        gradesService.addGrades(grades123);
-        List<Grades123> grades123List=gradesService.findAll();
-        model.addAttribute(grades123List);
+    public String addGrade(@RequestParam(value = "value", required = false) Integer value, Model model) {
+        Grade grade = new Grade(value);
+        gradesService.save(grade);
+
+        List<Grade> gradeList = gradesService.findAll();
+        model.addAttribute(gradeList);
+
         return "Grades/add-grades";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public ModelAndView goToDeleteGrades () {
+    public ModelAndView deleteGrade() {
         ModelAndView model = new ModelAndView("Grades/delete-grades");
         return model;
     }
 
     @RequestMapping(value = "/delete-grades", method = RequestMethod.GET)
-    public String deleteGrades (@RequestParam Long id,Model model) {
-        gradesService.deleteGrades(id);
-        List<Grades123> grades123List=gradesService.findAll();
-        model.addAttribute(grades123List);
+    public String deleteGrade(@RequestParam Long id, Model model) {
+        gradesService.delete(id);
+        List<Grade> gradeList = gradesService.findAll();
+
+        model.addAttribute(gradeList);
         return "Grades/grades-table";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView go () {
+    public ModelAndView editGrade() {
         ModelAndView model = new ModelAndView("Grades/edit-grades");
         return model;
     }
 
     @RequestMapping(value = "/edit-grades", method = RequestMethod.POST)
-    public String editGrades (Grades123 grades123) {
-        gradesService.editGrades(grades123);
+    public String editGrade(Grade grade) {
+        gradesService.save(grade);
         return "Grades/grades-table";
     }
 }

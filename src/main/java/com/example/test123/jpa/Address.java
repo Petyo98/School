@@ -7,18 +7,23 @@ import java.util.Objects;
 
 @Entity
 public class Address extends BaseEntity{
-    @Size(max = 255)
-    @NotNull
-    private String address;
-    private Boolean mainaddress;
+
     @Id
     @GeneratedValue(generator = "person_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(sequenceName = "person_id_sq",name = "person_id_seq",
-            schema = "public",allocationSize = 1,initialValue = 1)
+            schema = "public",allocationSize = 1, initialValue = 1)
+    @Column(name = "id")
     private Long id;
 
-    @Basic
+    @Size(max = 255)
+    @NotNull
     @Column(name = "address")
+    private String address;
+
+    @Basic
+    @Column(name = "mainaddress")
+    private Boolean mainaddress;
+
     public String getAddress() {
         return address;
     }
@@ -27,8 +32,6 @@ public class Address extends BaseEntity{
         this.address = address;
     }
 
-    @Basic
-    @Column(name = "mainaddress")
     public Boolean getMainaddress() {
         return mainaddress;
     }
@@ -37,8 +40,6 @@ public class Address extends BaseEntity{
         this.mainaddress = mainaddress;
     }
 
-
-    @Column(name = "id")
     public Long getId() {
         return id;
     }

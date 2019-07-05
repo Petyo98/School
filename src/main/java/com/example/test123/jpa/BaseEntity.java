@@ -1,42 +1,40 @@
 package com.example.test123.jpa;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Calendar;
+import java.util.Date;
 
 
 @MappedSuperclass
 public class BaseEntity {
 
-    private Date createDate;
+    private Date createdDate;
 
-    private Date updateDate;
+    private Date updatedDate;
 
-
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdatedDate(Date updateDate) {
+        this.updatedDate = updateDate;
     }
-
-
 
     @PrePersist
     public void prePresist(){
-        this.createDate = new Date(1998, 12,13);
+        this.createdDate = Calendar.getInstance().getTime();
     }
 
     @PreUpdate
     public void preUpdate(){
-        this.updateDate  = new Date(2000, 12,13);
+        this.updatedDate  = Calendar.getInstance().getTime();
     }
 }

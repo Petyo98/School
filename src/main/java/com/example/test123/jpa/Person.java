@@ -1,22 +1,27 @@
 package com.example.test123.jpa;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
 public class Person extends BaseEntity {
+
     @Id
     @GeneratedValue(generator = "person_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequenceName = "person_id_sq",name = "person_id_seq",
-            schema = "public",allocationSize = 1,initialValue = 1)
+    @SequenceGenerator(sequenceName = "person_id_sq", name = "person_id_seq",
+            schema = "public", allocationSize = 1, initialValue = 1)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "fisrt_name", length = 10)
     private String fisrtName;
+
+    @Column(name = "second_name")
     private String secondName;
+    
+    @Column(name = "last_name")
     private String lastName;
 
-
-    @Column(name = "id")
     public Long getId() {
         return id;
     }
@@ -25,8 +30,6 @@ public class Person extends BaseEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "fisrt_name", length = 10)
     public String getFisrtName() {
         return fisrtName;
     }
@@ -35,8 +38,6 @@ public class Person extends BaseEntity {
         this.fisrtName = fisrtName;
     }
 
-    @Basic
-    @Column(name = "second_name")
     public String getSecondName() {
         return secondName;
     }
@@ -45,8 +46,6 @@ public class Person extends BaseEntity {
         this.secondName = secondName;
     }
 
-    @Basic
-    @Column(name = "last_name")
     public String getLastName() {
         return lastName;
     }

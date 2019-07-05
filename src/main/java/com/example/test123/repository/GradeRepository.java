@@ -1,9 +1,9 @@
 package com.example.test123.repository;
 
-import com.example.test123.jpa.Students123;
+import com.example.test123.jpa.Grade;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentsRepository extends CrudRepository<Students123,Long> {
+public interface GradeRepository extends CrudRepository<Grade, Long> {
 }
