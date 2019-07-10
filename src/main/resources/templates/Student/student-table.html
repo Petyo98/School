@@ -11,7 +11,7 @@
             <th>name</th>
             <th>grades</th>
         </tr>
-        <tr th:each="students : ${studentsList}">
+        <tr th:each="students : ${studentList}">
             <td th:text="${students.name}"></td>
             <td th:text="${students.grades.value}"></td>
             <td>

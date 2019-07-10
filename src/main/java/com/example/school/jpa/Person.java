@@ -1,4 +1,4 @@
-package com.example.school.jpa;
+package com.example.test123.jpa;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -7,29 +7,17 @@ import java.util.Objects;
 
 @Entity
 public class Person extends BaseEntity {
-
     @Id
     @GeneratedValue(generator = "person_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequenceName = "person_id_sq", name = "person_id_seq",
-            schema = "public", allocationSize = 1, initialValue = 1)
-    @Column(name = "id")
+    @SequenceGenerator(sequenceName = "person_id_sq",name = "person_id_seq",
+            schema = "public",allocationSize = 1,initialValue = 1)
     private Long id;
-
-    @Size(max = 55)
-    @Column(name = "fisrt_name", length = 55)
     private String fisrtName;
-
-    @Size(max = 55)
-    @Column(name = "second_name", length = 55)
     private String secondName;
-
-    @Size(max = 55)
-    @Column(name = "last_name", length = 55)
     private String lastName;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Address> addresses;
 
+    @Column(name = "id")
     public Long getId() {
         return id;
     }
@@ -38,6 +26,8 @@ public class Person extends BaseEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "fisrt_name", length = 50)
     public String getFisrtName() {
         return fisrtName;
     }
@@ -46,6 +36,8 @@ public class Person extends BaseEntity {
         this.fisrtName = fisrtName;
     }
 
+    @Basic
+    @Column(name = "second_name", length = 50)
     public String getSecondName() {
         return secondName;
     }
@@ -54,20 +46,26 @@ public class Person extends BaseEntity {
         this.secondName = secondName;
     }
 
+    @Basic
+    @Column(name = "last_name", length = 50)
     public String getLastName() {
         return lastName;
     }
 
+
+//    @OneToMany(targetEntity= Student.class,mappedBy="Person", cascade = CascadeType.PERSIST, orphanRemoval = true)
+//    private List<Student> students;
+//
+//    public List<Student> getStudents() {
+//        return students;
+//    }
+//
+//    public void setStudents(List<Student> students) {
+//        this.students = students;
+//    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
     }
 
     @Override

@@ -10,6 +10,9 @@ select from Person;
 
 drop table person;
 
-
+alter table Person
+add column create_date DATE;
 alter table Person
 add column uppdate_date DATE;
+alter table teachers123
+add column identity_number integer unique

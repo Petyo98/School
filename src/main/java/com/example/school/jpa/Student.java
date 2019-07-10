@@ -1,27 +1,31 @@
-package com.example.school.jpa;
+package com.example.test123.jpa;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+import org.hibernate.validator.constraints.UniqueElements;
+
+import javax.annotation.Generated;
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "students123")
 public class Student {
-
     @Id
     @GeneratedValue(generator = "student_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(sequenceName = "student_id_seq",
             name = "student_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
-
-    @Column(name = "name")
     private String name;
+//    @ManyToOne
+//    @JoinColumn(name = "id")
+//    private Person person;
 
-    @ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false, nullable = false)
-    private Grade grade;
+    private Integer identityNumber;
 
     public Student() {
     }
+
 
     public Student(String name) {
         this.name = name;
@@ -35,6 +39,8 @@ public class Student {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -43,21 +49,41 @@ public class Student {
         this.name = name;
     }
 
-    public Grade getGrade() {
-        return grade;
+    @ManyToOne
+    @JoinColumn(name="id", insertable = false,updatable = false,nullable = false)
+    private Grades123 grades;
+
+    public Grades123 getGrades() {
+        return grades;
     }
 
-    public void setGrade(Grade grade) {
-        this.grade = grade;
+    public void setGrades(Grades123 grades) {
+        this.grades = grades;
+    }
+
+//    public Person getPerson() {
+//        return person;
+//    }
+//
+//    public void setPerson(Person person) {
+//        this.person = person;
+//    }
+
+    public Integer getIdentityNumber() {
+        return identityNumber;
+    }
+
+    public void setIdentityNumber(Integer identityNumber) {
+        this.identityNumber = identityNumber;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return id == student.id &&
-                Objects.equals(name, student.name);
+        Student that = (Student) o;
+        return id == that.id &&
+                Objects.equals(name, that.name);
     }
 
     @Override

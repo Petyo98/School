@@ -1,7 +1,7 @@
-package com.example.school.controller;
+package com.example.test123.controller;
 
-import com.example.school.jpa.Student;
-import com.example.school.service.StudentService;
+import com.example.test123.jpa.Student;
+import com.example.test123.service.ServiseInterfaces.StudentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,25 +14,25 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class StudentController {
+public class StudentsController {
 
     @Autowired
-    StudentService studentService;
+    StudentsService studentsService;
 
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     public @ResponseBody
-    ModelAndView showStudents(Model model) {
+    ModelAndView showStudents(Model model){
 
-        List<Student> studentsList = studentService.findAll();
+        List<Student> studentList =studentsService.findAll();
         ModelAndView modelAndView = new ModelAndView("Student/student-table");
-        model.addAttribute(studentsList);
+        model.addAttribute(studentList);
         return modelAndView;
 
     }
 
     @RequestMapping(value = "/add-student", method = RequestMethod.GET)
     public @ResponseBody
-    ModelAndView addStudents() {
+    ModelAndView goToAddStudents(){
 
         ModelAndView modelAndView = new ModelAndView("Student/add-student");
 
@@ -41,7 +41,7 @@ public class StudentController {
 
     @RequestMapping(value = "/delete-student", method = RequestMethod.GET)
     public @ResponseBody
-    ModelAndView deleteStudent() {
+    ModelAndView goToDeleteStudent(){
 
         ModelAndView modelAndView = new ModelAndView("Student/delete-student");
 
@@ -49,21 +49,18 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/student-delete", method = RequestMethod.GET)
-    public String deleteStudent(@RequestParam Long id, Model model) {
-        studentService.delete(id);
-
-        List<Student> studentsList = studentService.findAll();
-        model.addAttribute(studentsList);
+    public String deleteStudent (@RequestParam Long id, Model model) {
+        studentsService.deleteStudent(id);
+        List<Student> studentList =studentsService.findAll();
+        model.addAttribute(studentList);
         return "Student/student-table";
     }
 
     @RequestMapping(value = "/student-add", method = RequestMethod.POST)
-    public String addStudent(@RequestParam(value = "name", required = false) String name) {
+    public String addStudent (@RequestParam(value = "name", required=false) String name) {
         Student student = new Student(name);
-
-        studentService.save(student);
-        studentService.findAll();
-
+        studentsService.addStudent(student);
+        studentsService.findAll();
         return "Student/student-table";
     }
 }
