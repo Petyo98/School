@@ -1,9 +1,5 @@
-package com.example.test123.jpa;
+package com.example.school.jpa;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
-import org.hibernate.validator.constraints.UniqueElements;
-
-import javax.annotation.Generated;
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -11,17 +7,15 @@ import java.util.Objects;
 @Table(name = "students123")
 public class Student {
     @Id
-    @GeneratedValue(generator = "student_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequenceName = "student_id_seq",
-            name = "student_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(generator = "student123_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "student123_id_seq",
+            name = "student123_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
     private String name;
 //    @ManyToOne
-//    @JoinColumn(name = "id")
+//    @JoinColumn(name = "id", insertable = false,updatable = false,nullable = false)
 //    private Person person;
-
-    private Integer identityNumber;
 
     public Student() {
     }
@@ -50,15 +44,15 @@ public class Student {
     }
 
     @ManyToOne
-    @JoinColumn(name="id", insertable = false,updatable = false,nullable = false)
-    private Grades123 grades;
+    @JoinColumn(name="id", insertable = false, updatable = false, nullable = false)
+    private Grade grade;
 
-    public Grades123 getGrades() {
-        return grades;
+    public Grade getGrades() {
+        return grade;
     }
 
-    public void setGrades(Grades123 grades) {
-        this.grades = grades;
+    public void setGrades(Grade grades) {
+        this.grade = grades;
     }
 
 //    public Person getPerson() {
@@ -69,13 +63,7 @@ public class Student {
 //        this.person = person;
 //    }
 
-    public Integer getIdentityNumber() {
-        return identityNumber;
-    }
 
-    public void setIdentityNumber(Integer identityNumber) {
-        this.identityNumber = identityNumber;
-    }
 
     @Override
     public boolean equals(Object o) {

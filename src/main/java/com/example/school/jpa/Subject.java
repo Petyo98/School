@@ -1,16 +1,18 @@
 package com.example.school.jpa;
 
 import javax.persistence.*;
+import com.example.school.jpa.Teacher;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "Subject123")
 public class Subject {
 
     @Id
-    @GeneratedValue(generator = "subject_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequenceName = "subject_id_seq",
-            name = "subject_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(generator = "subject123_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "subject123_id_seq",
+            name = "subject123_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
     private Long id;
 
     @Column(name = "name")

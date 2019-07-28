@@ -23,11 +23,10 @@ public class GradeController {
 
     @RequestMapping(value = "/grades", method = RequestMethod.GET)
     public @ResponseBody
-    ModelAndView showGrades(ModelMap modelMap) {
+    ModelAndView showGrades(Model model) {
         List<Grade> gradeList = gradesService.findAll();
-
         ModelAndView modelAndView = new ModelAndView("Grades/grades-table");
-        modelMap.addAttribute(gradeList);
+        model.addAttribute(gradeList);
 
         return modelAndView;
     }

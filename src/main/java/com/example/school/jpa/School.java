@@ -4,22 +4,23 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-
+import com.example.school.jpa.Teacher;
 @Entity
+@Table(name = "School112")
 public class School {
 
     @Id
-    @GeneratedValue(generator = "school_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequenceName = "school_id_seq",
-            name = "school_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(generator = "school112_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "school112_id_seq",
+            name = "school112_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "createdYear")
-    private Date createdYear;
+    @Column(name = "createdyear")
+    private Date createdyear;
 
     @OneToMany(targetEntity = Teacher.class, mappedBy = "school", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Teacher> teachers;
@@ -29,7 +30,7 @@ public class School {
 
     public School(String name, Date createdYear) {
         this.name = name;
-        this.createdYear = createdYear;
+        this.createdyear = createdYear;
     }
 
     public Long getId() {
@@ -49,11 +50,11 @@ public class School {
     }
 
     public Date getCreatedYear() {
-        return createdYear;
+        return createdyear;
     }
 
     public void setCreatedYear(Date createdYear) {
-        this.createdYear = createdYear;
+        this.createdyear = createdYear;
     }
 
     public List<Teacher> getTeachers() {
@@ -71,11 +72,11 @@ public class School {
         School school = (School) o;
         return id == school.id &&
                 Objects.equals(name, school.name) &&
-                Objects.equals(createdYear, school.createdYear);
+                Objects.equals(createdyear, school.createdyear);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, createdYear);
+        return Objects.hash(id, name, createdyear);
     }
 }

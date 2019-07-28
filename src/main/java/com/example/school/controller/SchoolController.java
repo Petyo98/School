@@ -27,10 +27,10 @@ public class SchoolController {
 
     @RequestMapping(value = "/schools", method = RequestMethod.GET)
     public @ResponseBody
-    ModelAndView goToSecondPage(Model modelMap) {
+    ModelAndView goToSecondPage(Model model) {
         List<School> schoolList = schoolService.findAll();
         ModelAndView modelAndView = new ModelAndView("School/school-table");
-        modelMap.addAttribute(schoolList);
+        model.addAttribute(schoolList);
         return modelAndView;
     }
 
@@ -44,7 +44,8 @@ public class SchoolController {
     @RequestMapping(value = "/add-school", method = RequestMethod.POST)
     public String addSchool(
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "createdyear", required = false) Date createdyear,Model model) {
+            @RequestParam(value = "createdyear", required = false) Date createdyear,
+            Model model) {
         School school = new School(name, createdyear);
         schoolService.save(school);
         List<School> schoolList = schoolService.findAll();
@@ -72,7 +73,7 @@ public class SchoolController {
     public ModelAndView goEditSchool(@RequestParam Long id ,Model model) {
         School school = schoolService.getSchoolById(id);
         model.addAttribute("id",id);
-        ModelAndView modelAndView = new ModelAndView("edit-school");
+        ModelAndView modelAndView = new ModelAndView("School/edit-school");
 
         return modelAndView;
     }

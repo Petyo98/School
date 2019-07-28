@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "Class123")
 public class StudentClass {
 
     @Id
     @Column
-    @GeneratedValue(generator = "student_class_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequenceName = "student_class_id_seq",
-            name = "student_class_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(generator = "student123_class_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "student123_class_id_seq",
+            name = "student123_class_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
     private Long id;
 
     @Basic

@@ -1,4 +1,6 @@
-package com.example.test123.jpa;
+package com.example.school.jpa;
+
+import com.example.school.jpa.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;

@@ -4,20 +4,22 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
+
 @Entity
+@Table(name = "Grades123")
 public class Grade {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "grades_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequenceName = "grades_id_seq",
-            name = "grades_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(generator = "grades123_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "grades123_id_seq",
+            name = "grades123_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
     private Long id;
 
     @Column(name = "value")
     private Integer value;
 
-    @OneToMany(targetEntity = Student.class, mappedBy = "grade")
+    @OneToMany(targetEntity = Student.class, mappedBy = "grade", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Student> students;
 
     public Grade() {

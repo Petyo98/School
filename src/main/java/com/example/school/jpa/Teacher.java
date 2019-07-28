@@ -1,17 +1,19 @@
-package com.example.test123.jpa;
+package com.example.school.jpa;
 
+import com.example.school.jpa.School;
+import com.example.school.jpa.Subject;
 import com.fasterxml.jackson.databind.JsonSerializable;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "teacher123")
+@Table(name = "teachers123")
 public class Teacher  {
     @Id
-    @GeneratedValue(generator = "teacher_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequenceName = "teacher_id_seq",
-            name = "teacher_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(generator = "teacher123_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "teacher123_id_seq",
+            name = "teacher123_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private long id;
     private String name;
@@ -19,10 +21,10 @@ public class Teacher  {
     public Teacher() {
     }
 
-    public Teacher(String name, School112 school112, Subject123 subject123) {
+    public Teacher(String name, School school, Subject subject) {
         this.name = name;
-        this.school112 = school112;
-        this.subject123 = subject123;
+        this.school = school;
+        this.subject = subject;
 
     }
 
@@ -44,29 +46,29 @@ public class Teacher  {
         this.name = name;
     }
 
-    @ManyToOne(targetEntity=Subject123.class, cascade = CascadeType.REMOVE)
+    @ManyToOne(targetEntity=Subject.class, cascade = CascadeType.REMOVE)
     @JoinColumn(name="id", insertable = false,updatable = false,nullable = false)
-    private Subject123 subject123;
+    private Subject subject;
 
-    @ManyToOne(targetEntity=School112.class, cascade = CascadeType.REMOVE)
+    @ManyToOne(targetEntity=School.class, cascade = CascadeType.REMOVE)
     @JoinColumn(name="id", insertable = false,updatable = false,nullable = false)
-    private School112 school112;
+    private School school;
 
 
-    public Subject123 getSubject123() {
-        return subject123;
+    public Subject getSubject123() {
+        return subject;
     }
 
-    public void setSubject123(Subject123 subject123) {
-        this.subject123 = subject123;
+    public void setSubject123(Subject subject) {
+        this.subject = subject;
     }
 
-    public School112 getSchool112() {
-        return school112;
+    public School getSchool112() {
+        return school;
     }
 
-    public void setSchool112(School112 school112) {
-        this.school112 = school112;
+    public void setSchool112(School school) {
+        this.school = school;
     }
 
     @Override

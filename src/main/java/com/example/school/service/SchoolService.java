@@ -11,7 +11,7 @@ public interface SchoolService {
 
     void delete(Long id);
 
-    void delete(School school);
+//    void delete(School school);
 
     School getSchoolById(Long id);
 

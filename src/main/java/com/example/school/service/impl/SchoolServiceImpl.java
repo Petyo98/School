@@ -24,10 +24,10 @@ public class SchoolServiceImpl implements SchoolService {
         schoolRepository.getSchoolById(id);
     }
 
-    @Override
-    public void delete(School school) {
-        schoolRepository.delete(school);
-    }
+//    @Override
+//    public void delete(School school) {
+//        schoolRepository.delete(school);
+//    }
 
     @Override
     public School getSchoolById(Long id) {

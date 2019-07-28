@@ -1,7 +1,7 @@
-package com.example.test123.controller;
+package com.example.school.controller;
 
-import com.example.test123.jpa.Student;
-import com.example.test123.service.ServiseInterfaces.StudentsService;
+import com.example.school.jpa.Student;
+import com.example.school.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class StudentsController {
+public class StudentController {
 
     @Autowired
-    StudentsService studentsService;
+    StudentService studentsService;
 
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     public @ResponseBody
@@ -50,7 +50,7 @@ public class StudentsController {
 
     @RequestMapping(value = "/student-delete", method = RequestMethod.GET)
     public String deleteStudent (@RequestParam Long id, Model model) {
-        studentsService.deleteStudent(id);
+        studentsService.delete(id);
         List<Student> studentList =studentsService.findAll();
         model.addAttribute(studentList);
         return "Student/student-table";
@@ -59,7 +59,7 @@ public class StudentsController {
     @RequestMapping(value = "/student-add", method = RequestMethod.POST)
     public String addStudent (@RequestParam(value = "name", required=false) String name) {
         Student student = new Student(name);
-        studentsService.addStudent(student);
+        studentsService.save(student);
         studentsService.findAll();
         return "Student/student-table";
     }
