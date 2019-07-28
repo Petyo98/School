@@ -10,9 +10,9 @@ import java.util.Objects;
 public class Subject {
 
     @Id
-    @GeneratedValue(generator = "subject123_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequenceName = "subject123_id_seq",
-            name = "subject123_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(generator = "subjects123_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "subjects123_id_seq",
+            name = "subjects123_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
     private Long id;
 
     @Column(name = "name")

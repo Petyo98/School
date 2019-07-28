@@ -11,9 +11,9 @@ import java.util.Objects;
 @Table(name = "teachers123")
 public class Teacher  {
     @Id
-    @GeneratedValue(generator = "teacher123_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequenceName = "teacher123_id_seq",
-            name = "teacher123_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(generator = "teachers123_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequenceName = "teachers123_id_seq",
+            name = "teachers123_id_seq", schema = "public", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private long id;
     private String name;

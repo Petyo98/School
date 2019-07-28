@@ -65,14 +65,22 @@ public class GradeController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView editGrade() {
-        ModelAndView model = new ModelAndView("Grades/edit-grades");
-        return model;
+    public ModelAndView editGrade(@RequestParam Long id ,Model model) {
+        Grade grade = gradesService.getGradeById(id);
+        model.addAttribute("id",id);
+        ModelAndView modelAndView = new ModelAndView("Grades/edit-grades");
+        return modelAndView;
     }
 
     @RequestMapping(value = "/edit-grades", method = RequestMethod.POST)
-    public String editGrade(Grade grade) {
+    public String editGrade(@RequestParam Long id,
+                            @RequestParam Integer value,Model model) {
+        Grade grade = gradesService.getGradeById(id);
+        grade.setValue(value);
         gradesService.save(grade);
+        List<Grade> gradeList = gradesService.findAll();
+
+        model.addAttribute(gradeList);
         return "Grades/grades-table";
     }
 }

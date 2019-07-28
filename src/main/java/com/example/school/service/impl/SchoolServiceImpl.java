@@ -20,14 +20,9 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Override
-    public void delete(Long id) {
-        schoolRepository.getSchoolById(id);
+    public void delete(Long schoolId) {
+        schoolRepository.deleteById(schoolId);
     }
-
-//    @Override
-//    public void delete(School school) {
-//        schoolRepository.delete(school);
-//    }
 
     @Override
     public School getSchoolById(Long id) {

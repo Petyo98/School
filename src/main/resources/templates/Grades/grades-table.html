@@ -21,6 +21,9 @@
                     <input type="submit" value="Delete Grades">
             </form>
             </td>
+            <td>
+                <a th:href="@{/edit(id=${grades.id})}" th:text="'Edit'"></a>
+            </td>
         </tr>
     </table>
 </div>

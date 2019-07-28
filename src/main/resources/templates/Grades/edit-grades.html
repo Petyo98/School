@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="bg">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="/edit-grades" name="action">
+<form method="post" th:action="@{/edit-grades(id=${id})}">
     <table>
-        <tr>
-            <td>Id:</td>
-            <td><input name="id" /></td>
-        </tr>
         <tr>
             <td>Value:</td>
             <td><input name="value" /></td>
