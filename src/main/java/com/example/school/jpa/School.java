@@ -1,9 +1,10 @@
 package com.example.school.jpa;
 
 import javax.persistence.*;
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.sql.Date;
 import com.example.school.jpa.Teacher;
 @Entity
 @Table(name = "School112")

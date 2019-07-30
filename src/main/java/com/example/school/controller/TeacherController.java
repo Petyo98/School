@@ -56,8 +56,9 @@ public class TeacherController {
 
     @RequestMapping(value = "/add-teacher", method = RequestMethod.POST)
     public String addTeacher(@RequestParam(value = "name", required = false) String name,
+                             @RequestParam(value = "school", required = false) School school,
                              @RequestParam(value = "subject", required = false) Subject subject,
-                             @RequestParam(value = "school", required = false) School school, Model model) {
+                              Model model) {
         Teacher teacher = new Teacher(name, school, subject);
         teacherService.save(teacher);
 
